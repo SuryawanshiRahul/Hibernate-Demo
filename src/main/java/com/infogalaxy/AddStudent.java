@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.infogalaxy.entity.Students;
 
-public class DeleteStudent {
+public class AddStudent {
 		public static void main(String[] args) {
 			//step 1 : Create Configration Obejct And Call configure()
 			Configuration configuration = new Configuration();
@@ -24,13 +24,11 @@ public class DeleteStudent {
 			//Step 4 : perform  oprations using session object
 			session.beginTransaction();
 			
-			Students students = new Students();
-			students.setId(105);
-			students.setName("Android");
-			students.setFees(8000);
-			session.save(students);
+			Students students = session.get(Students.class, 1);
+			students.setName("PHP");
+			session.update(students);
 			session.getTransaction().commit();
 			
-			System.out.println("Data Saved Successfully....");
+			System.out.println("Data Deleted Successfully....");
 		}
 }
